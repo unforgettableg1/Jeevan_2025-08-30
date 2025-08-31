@@ -15,17 +15,20 @@ This project builds a backend system + API to:
 ---
 
 ##  Repository Structure
-app/ # Source code (FastAPI, SQLAlchemy, report logic)
-sample_data/ # Sample CSVs for demo
-├── menu_hours.csv
-├── timezones.csv
-├── store_status_small.csv <-- small version for repo
-reports/ # Generated reports (only sample_report.csv kept)
-└── sample_report.csv
-requirements.txt # Python dependencies
-README.md # Project documentation
-.gitignore # Ignore big files, db, venv
-
+.
+├── app
+│   ├── main.py               # FastAPI app & endpoints
+│   ├── models.py             # SQLAlchemy models
+│   ├── schemas.py            # Pydantic schemas
+│   ├── ingestion.py          # CSV -> DB ingestion utilities
+│   ├── report_logic.py       # Core computation of uptime/downtime
+│   └── utils_time.py         # Time helpers (windowing, TZ conversion, splitting ranges)
+├── reports/                  # Generated CSV reports saved here
+├── sample_data/              # Place the provided CSVs here (see below)
+├── tests/
+│   └── test_report_logic.py  # Minimal unit tests for overlap logic
+├── requirements.txt
+└── README.md
 
 ## Create virtual environment & install dependencies
 python -m venv .venv
